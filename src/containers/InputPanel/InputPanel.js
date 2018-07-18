@@ -9,62 +9,70 @@ const inputPanel = props => {
     <div>
       <Col md={props.colmd}>
         <Panel>
-          <Panel.Heading>Info</Panel.Heading>
+          <Panel.Heading>Я потерял...</Panel.Heading>
           <Panel.Body>
-            <Input
-              id="input1"
-              name="input1"
+            <Select
+              id="species-select"
+              name="species"
               colmd={4}
-              placeholder="Enter something..."
-              label="Input 1"
-            />
-            <Input
-              id="input2"
-              name="input2"
-              colmd={4}
-              placeholder="Enter something..."
-              label="Input 2"
-            />
-            <Input
-              id="input3"
-              name="input3"
-              colmd={4}
-              placeholder="Enter something..."
-              label="Input 3"
+              placeholder="Животное"
+              label="Животное"
+              options={props.options.speciesOptions}
+              changed={props.speciesChanged}
+              defaultValueText="Выберите животное..."
             />
             <Select
-              id="select1"
-              name="select1"
+              id="breed-select"
+              name="breed"
               colmd={4}
-              placeholder="Enter something..."
-              label="Select 1"
-              options={props.options}
-              changed={props.selectChanged}
+              placeholder="Порода"
+              label="Порода"
+              options={props.options.breedOptions}
+              changed={props.animalChanged}
+              disabled={props.breedSelectDisabled}
+              defaultValueText="Выберите породу..."
             />
             <Select
-              id="select2"
-              name="select2"
+              id="gender-select"
+              name="gender"
               colmd={4}
-              placeholder="Enter something..."
-              label="Select 2"
-              options={props.options}
-              changed={props.selectChanged}
+              placeholder="Пол"
+              label="Пол"
+              options={props.options.genderOptions}
+              changed={props.animalChanged}
+              defaultValueText="Выберите пол..."
             />
-            <Select
-              id="select3"
-              name="select3"
+            <Input
+              id="age-input"
+              name="age"
               colmd={4}
-              placeholder="Enter something..."
-              label="Select 3"
-              options={props.options}
-              changed={props.selectChanged}
+              placeholder="Возраст"
+              label="Возраст"
+              changed={props.animalChanged}
+            />
+            <Input
+              id="color-input"
+              name="color"
+              colmd={4}
+              placeholder="Окрас"
+              label="Окрас"
+              changed={props.animalChanged}
+            />
+            <Input
+              id="alias-input"
+              name="alias"
+              colmd={4}
+              placeholder="Кличка"
+              label="Кличка"
+              changed={props.animalChanged}
             />
             <Textarea
-              id="textarea1"
-              name="textarea1"
+              id="textarea"
+              name="description"
               colmd={12}
-              placeholder="Enter something..."
-              label="Some big text"
+              placeholder="Введите текст объявления..."
+              label=""
+              changed={props.descriptionChanged}
             />
           </Panel.Body>
         </Panel>
