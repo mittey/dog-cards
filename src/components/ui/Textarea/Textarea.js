@@ -11,6 +11,7 @@ const Textarea = props => {
           componentClass="textarea"
           placeholder={props.placeholder}
           name={props.name}
+          onChange={props.changed}
         />
       </FormGroup>
     </Col>

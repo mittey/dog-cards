@@ -8,6 +8,7 @@ const input = props => {
       <FormGroup controlId={props.id}>
         <ControlLabel>{props.label}</ControlLabel>
         <FormControl
+          onChange={props.changed}
           name={props.name}
           type="text"
           placeholder={props.placeholder}
