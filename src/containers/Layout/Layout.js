@@ -4,6 +4,7 @@ import { Row, Col, Panel } from "react-bootstrap";
 import InputPanel from "../InputPanel/InputPanel";
 import MapPanel from "../MapPanel/MapPanel";
 import SubmitButton from "../../components/ui/SubmitButton/SubmitButton";
+import UserInfoPanel from "../../containers/UserInfoPanel/UserInfoPanel";
 
 class Layout extends Component {
   state = {
@@ -22,16 +23,16 @@ class Layout extends Component {
         age: null,
         gender: null,
         color: null,
-        breed: null
+        breed: { id: null }
       },
       address: {
         latitude: 1,
         longitude: 1,
         address: "somewhere 2"
       },
-      person: "http://localhost:8090/people/1",
-      createdAt: "2012-04-23T18:25:43.511Z",
-      updatedAt: "2012-04-23T18:25:43.511Z"
+      person: {
+        id: 1
+      }
     }
   };
 
@@ -62,7 +63,7 @@ class Layout extends Component {
 
   speciesSelectedHandler = event => {
     var breedsToShow = this.state.allBreeds.filter(
-      breed => breed.speciesId == event.target.value
+      breed => breed.speciesId === parseInt(event.target.value, 10)
     );
 
     this.setState({
@@ -75,6 +76,14 @@ class Layout extends Component {
     const formData = { ...this.state.formData };
 
     formData.animal[event.target.name] = event.target.value;
+
+    this.setState({ formData: formData });
+  };
+
+  breedChangeHandler = event => {
+    const formData = { ...this.state.formData };
+
+    formData.animal.breed.id = event.target.value;
 
     this.setState({ formData: formData });
   };
@@ -128,6 +137,7 @@ class Layout extends Component {
                     animalChanged={this.animalChangeHanlder}
                     descriptionChanged={this.descriptionChangeHandler}
                     speciesChanged={this.speciesSelectedHandler}
+                    breedChanged={this.breedChangeHandler}
                     options={{
                       speciesOptions: this.state.speciesOptions,
                       breedOptions: this.state.breedOptions,
@@ -137,6 +147,7 @@ class Layout extends Component {
                     breedSelectDisabled={this.state.breedSelectDisabled}
                   />
                   <MapPanel colmd={4} />
+                  <UserInfoPanel colmd={4} />
                   <SubmitButton />
                 </Panel.Body>
               </Panel>

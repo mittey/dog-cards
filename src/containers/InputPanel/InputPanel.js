@@ -28,7 +28,7 @@ const inputPanel = props => {
               placeholder="Порода"
               label="Порода"
               options={props.options.breedOptions}
-              changed={props.animalChanged}
+              changed={props.breedChanged}
               disabled={props.breedSelectDisabled}
               defaultValueText="Выберите породу..."
             />
