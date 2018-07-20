@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
 import { Row, Col, Panel } from "react-bootstrap";
-import InputPanel from "../InputPanel/InputPanel";
-import MapPanel from "../MapPanel/MapPanel";
+import InputPanel from "../../components/InputPanel/InputPanel";
+import MapPanel from "../../components/MapPanel/MapPanel";
 import SubmitButton from "../../components/ui/SubmitButton/SubmitButton";
-import UserInfoPanel from "../UserInfoPanel/UserInfoPanel";
-import ImageUploadPanel from "../ImageUploadPanel/ImageUploadPanel";
+import UserInfoPanel from "../../components/UserInfoPanel/UserInfoPanel";
+import ImageUploadPanel from "../../components/ImageUploadPanel/ImageUploadPanel";
 
 class Layout extends Component {
   state = {

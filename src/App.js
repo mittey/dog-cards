@@ -1,13 +1,22 @@
 import React, { Component } from "react";
 import "./App.css";
-import Layout from "./containers/Layout/Layout";
+import CreateCardLayout from "./containers/CreateCardLayout/CreateCardLayout";
+import ViewCardLayout from "./containers/ViewCardLayout/ViewCardLayout";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Layout />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Switch>
+            <Route path="/view-card/:cardId" component={ViewCardLayout} />
+            <Route path="/create-card" component={CreateCardLayout} /> 
+            <Route path="/" component={ViewCardLayout} exact />
+          </Switch>
+          {/* <CreateCardLayout /> */}
+        </div>
+      </BrowserRouter>
     );
   }
 }
