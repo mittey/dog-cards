@@ -4,7 +4,8 @@ import { Row, Col, Panel } from "react-bootstrap";
 import InputPanel from "../InputPanel/InputPanel";
 import MapPanel from "../MapPanel/MapPanel";
 import SubmitButton from "../../components/ui/SubmitButton/SubmitButton";
-import UserInfoPanel from "../../containers/UserInfoPanel/UserInfoPanel";
+import UserInfoPanel from "../UserInfoPanel/UserInfoPanel";
+import ImageUploadPanel from "../ImageUploadPanel/ImageUploadPanel";
 
 class Layout extends Component {
   state = {
@@ -32,6 +33,9 @@ class Layout extends Component {
       },
       person: {
         id: 1
+      },
+      picture: {
+        id: null
       }
     }
   };
@@ -84,6 +88,14 @@ class Layout extends Component {
     const formData = { ...this.state.formData };
 
     formData.animal.breed.id = event.target.value;
+
+    this.setState({ formData: formData });
+  };
+
+  pictureUploadHandler = pictureId => {
+    const formData = { ...this.state.formData };
+
+    formData.picture.id = pictureId;
 
     this.setState({ formData: formData });
   };
@@ -148,6 +160,10 @@ class Layout extends Component {
                   />
                   <MapPanel colmd={4} />
                   <UserInfoPanel colmd={4} />
+                  <ImageUploadPanel
+                    pictureUploded={this.pictureUploadHandler}
+                    colmd={4}
+                  />
                   <SubmitButton />
                 </Panel.Body>
               </Panel>
