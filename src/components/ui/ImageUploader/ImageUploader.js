@@ -46,7 +46,7 @@ class ImageUploader extends Component {
             <p>
               {this.state.fileName
                 ? this.state.fileName
-                : "Try dropping some files here, or click to select files to upload."}
+                : "Для загрузки перетащите фото на область или кликните левой кнопкой мыши и выберите фото "}
             </p>
           </Dropzone>
         </div>

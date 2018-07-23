@@ -8,7 +8,7 @@ const imageUploadPanel = props => {
     <div>
       <Col md={props.colmd}>
         <Panel>
-          <Panel.Heading>Загрузка фото</Panel.Heading>
+          <Panel.Heading>Загрузите фото</Panel.Heading>
           <Panel.Body>
             <ImageUploader pictureUploded={props.pictureUploded} />
           </Panel.Body>

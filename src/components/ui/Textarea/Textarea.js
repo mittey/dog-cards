@@ -9,6 +9,7 @@ const Textarea = props => {
         <ControlLabel>{props.label}</ControlLabel>
         <FormControl
           componentClass="textarea"
+          style={{height: '157px'}}
           placeholder={props.placeholder}
           name={props.name}
           onChange={props.changed}

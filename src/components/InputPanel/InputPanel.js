@@ -9,7 +9,7 @@ const inputPanel = props => {
     <div>
       <Col md={props.colmd}>
         <Panel>
-          <Panel.Heading>Я потерял...</Panel.Heading>
+          <Panel.Heading>Укажите информацию о пропавшем животном</Panel.Heading>
           <Panel.Body>
             <Select
               id="species-select"
@@ -19,7 +19,7 @@ const inputPanel = props => {
               label="Животное"
               options={props.options.speciesOptions}
               changed={props.speciesChanged}
-              defaultValueText="Выберите животное..."
+              defaultValueText="Выберите животное"
             />
             <Select
               id="breed-select"
@@ -30,7 +30,7 @@ const inputPanel = props => {
               options={props.options.breedOptions}
               changed={props.breedChanged}
               disabled={props.breedSelectDisabled}
-              defaultValueText="Выберите породу..."
+              defaultValueText="Выберите породу"
             />
             <Select
               id="gender-select"
@@ -40,13 +40,13 @@ const inputPanel = props => {
               label="Пол"
               options={props.options.genderOptions}
               changed={props.animalChanged}
-              defaultValueText="Выберите пол..."
+              defaultValueText="Выберите пол"
             />
             <Input
               id="age-input"
               name="age"
               colmd={4}
-              placeholder="Возраст"
+              placeholder="Введите возраст"
               label="Возраст"
               changed={props.animalChanged}
             />
@@ -54,7 +54,7 @@ const inputPanel = props => {
               id="color-input"
               name="color"
               colmd={4}
-              placeholder="Окрас"
+              placeholder="Введите окрас"
               label="Окрас"
               changed={props.animalChanged}
             />
@@ -62,7 +62,7 @@ const inputPanel = props => {
               id="alias-input"
               name="alias"
               colmd={4}
-              placeholder="Кличка"
+              placeholder="Введите кличку"
               label="Кличка"
               changed={props.animalChanged}
             />
@@ -70,6 +70,7 @@ const inputPanel = props => {
               id="textarea"
               name="description"
               colmd={12}
+              
               placeholder="Введите текст объявления..."
               label=""
               changed={props.descriptionChanged}
