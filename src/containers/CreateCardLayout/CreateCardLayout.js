@@ -13,7 +13,7 @@ class Layout extends Component {
     speciesOptions: [],
     allBreeds: [],
     breedOptions: [],
-    genderOptions: ["boy", "girl"],
+    genderOptions: ["самец", "самка"],
     selectValue: null,
     breedSelectDisabled: true,
     speciesChosen: null,

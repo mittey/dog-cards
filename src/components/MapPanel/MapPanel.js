@@ -1,17 +1,34 @@
-import React from "react";
+import React, {Component} from "react";
 import { Panel, Col } from "react-bootstrap";
+import { withGoogleMap, GoogleMap } from 'react-google-maps';
 
-const inputPanel = props => {
+class Map extends Component {
+
+  render() {
+    const GoogleMapExample = withGoogleMap(props => (
+       <GoogleMap
+         defaultCenter = { { lat: 59.939095, lng: 30.315868 } }
+         defaultZoom = { 13 }
+       >
+       </GoogleMap>
+    ));
+
   return (
     <div>
-      <Col md={props.colmd}>
+      <Col md={this.props.colmd}>
         <Panel>
-          <Panel.Heading>Map</Panel.Heading>
-          <Panel.Body>There will be a map here...</Panel.Body>
+          <Panel.Heading>Укажите место на карте</Panel.Heading>
+          <Panel.Body>
+            <GoogleMapExample
+          // colmd={4}
+          containerElement={ <div style={{ height: `340px` }} /> }
+          mapElement={ <div style={{ height: `100%` }} /> }
+        /></Panel.Body>
         </Panel>
       </Col>
     </div>
   );
+}
 };
 
-export default inputPanel;
+export default Map;
