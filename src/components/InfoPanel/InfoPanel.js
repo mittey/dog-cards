@@ -54,9 +54,10 @@ class InfoPanel extends Component {
                 <p>{this.props.cardData.animal.alias}</p>
                 <p>{`${this.props.cardData.animal.age} лет`}</p>
                 <p>{this.props.cardData.animal.color}</p>
+                
               </Col>
               <Col md={12}>
-                <p style={{ marginBottom: "1px", marginTop: "15px" }}>
+                <p style={{ marginBottom: "10px", marginTop: "15px" }}>
                   <Label>Текст объявления:</Label>
                 </p>
                 <p>{this.props.cardData.description}</p>

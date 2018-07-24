@@ -17,6 +17,7 @@ class Layout extends Component {
     selectValue: null,
     breedSelectDisabled: true,
     speciesChosen: null,
+    personData: null,
     formData: {
       description: null,
       animal: {
@@ -27,12 +28,12 @@ class Layout extends Component {
         breed: { id: null }
       },
       address: {
-        latitude: 1,
-        longitude: 1,
-        address: "somewhere 2"
+        latitude: null,
+        longitude: null,
+        
       },
       person: {
-        id: 1
+        id: 2
       },
       picture: {
         id: null
@@ -45,8 +46,8 @@ class Layout extends Component {
 
     fetch("http://localhost:8090/cards", {
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
+        Accept: 'application/json',
+        'Content-Type': "application/json"
       },
       method: "POST",
       body: JSON.stringify(this.state.formData)
@@ -100,6 +101,14 @@ class Layout extends Component {
     this.setState({ formData: formData });
   };
 
+  markerDragendHanlder = event => {
+    const formData = { ...this.state.formData };
+
+    formData.address[event.target.name] = event.target.value;
+
+    this.setState({ formData: formData });
+  };
+
   _fetchBreedData = () => {
     fetch("http://localhost:8090/breeds")
       .then(response => response.json())
@@ -131,9 +140,36 @@ class Layout extends Component {
       });
   };
 
+  
+
+  // _fetchPeopleData = () => {
+  //   fetch("http://localhost:8090/people")
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       this.setState({
+  //         peopleOptions: data.map(singlePerson => {
+  //           return {
+  //             name: singlePerson.name,
+  //             id: singlePerson.id,
+  //             phone: singlePerson.phone,
+  //             email: singlePerson.email
+  //           };
+  //         })
+  //       });
+  //     });
+  // };
+
   componentDidMount = () => {
     this._fetchBreedData();
     this._fetchSpeciesData();
+
+    fetch(`http://localhost:8090/people/1`)
+    .then(result => result.json())
+    .then(data => {
+        console.log(data);
+        this.setState({ personData: data });
+    });
+    
   };
 
   render() {
@@ -150,6 +186,7 @@ class Layout extends Component {
                     descriptionChanged={this.descriptionChangeHandler}
                     speciesChanged={this.speciesSelectedHandler}
                     breedChanged={this.breedChangeHandler}
+                    markerDragend={this.markerDragendHanlder}
                     options={{
                       speciesOptions: this.state.speciesOptions,
                       breedOptions: this.state.breedOptions,
@@ -159,7 +196,7 @@ class Layout extends Component {
                     breedSelectDisabled={this.state.breedSelectDisabled}
                   />
                   <MapPanel colmd={4} />
-                  <UserInfoPanel colmd={4} />
+                  <UserInfoPanel personData={this.state.personData} colmd={4} />
                   <ImageUploadPanel
                     pictureUploded={this.pictureUploadHandler}
                     colmd={4}

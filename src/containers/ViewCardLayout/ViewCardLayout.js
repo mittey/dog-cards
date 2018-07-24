@@ -2,22 +2,32 @@ import React, { Component } from "react";
 
 import { Col, Row, Panel } from "react-bootstrap";
 import InfoPanel from "../../components/InfoPanel/InfoPanel";
+import UserInfoPanel from "../../components/UserInfoPanel/UserInfoPanel";
+import MapPanel from "../../components/MapPanel/MapPanel"
 
 class ViewCardLayout extends Component {
   state = {
-    cardData: null
+    cardData: null,
+    // peopleData: null
   };
 
-  componentDidMount = () => {
-    console.log(this.props);
+    componentDidMount = () => {
+        console.log(this.props);
 
-    fetch(`http://localhost:8090/cards/${this.props.match.params.cardId}`)
-      .then(result => result.json())
-      .then(data => {
-        console.log(data);
-        this.setState({ cardData: data });
-      });
-  };
+        fetch(`http://localhost:8090/cards/${this.props.match.params.cardId}`)
+            .then(result => result.json())
+            .then(data => {
+                console.log(data);
+                this.setState({ cardData: data });
+            });
+
+            // fetch(`http://localhost:8090/people/1`)
+            //   .then(result => result.json())
+            //   .then(data => {
+            //     console.log(data);
+            //     this.setState({ peopleData: data });
+            //   });
+    };
 
   render() {
     return (
@@ -28,6 +38,8 @@ class ViewCardLayout extends Component {
               <Panel.Heading>Просмотр объявления</Panel.Heading>
               <Panel.Body>
                 <InfoPanel cardData={this.state.cardData} colmd={8} />
+                <MapPanel colmd={4} />
+                <UserInfoPanel cardData={this.state.cardData} colmd={4} />
               </Panel.Body>
             </Panel>
           </Col>

@@ -1,15 +1,23 @@
 import React, {Component} from "react";
 import { Panel, Col } from "react-bootstrap";
-import { withGoogleMap, GoogleMap } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 class Map extends Component {
 
   render() {
+    const pos = { lat: 59.939095, lng: 30.315868 }
+
     const GoogleMapExample = withGoogleMap(props => (
        <GoogleMap
-         defaultCenter = { { lat: 59.939095, lng: 30.315868 } }
+         defaultCenter = { pos }
          defaultZoom = { 13 }
        >
+       <Marker
+         position = {pos}
+         draggable={true}
+         onClick={(event, marker) => {console.log('marker was clicked', event);}}
+          onDragEnd={() => {console.log('drag ended')}}
+       />
        </GoogleMap>
     ));
 
@@ -23,7 +31,9 @@ class Map extends Component {
           // colmd={4}
           containerElement={ <div style={{ height: `340px` }} /> }
           mapElement={ <div style={{ height: `100%` }} /> }
-        /></Panel.Body>
+          
+        />
+        </Panel.Body>
         </Panel>
       </Col>
     </div>
