@@ -5,7 +5,7 @@ import { FormGroup, Col, Button } from "react-bootstrap";
 const submitButton = () => {
   return (
     <FormGroup>
-      <Col md={11}>
+      <Col md={12}>
         <Button className="pull-right" type="submit">
           Сохранить
         </Button>

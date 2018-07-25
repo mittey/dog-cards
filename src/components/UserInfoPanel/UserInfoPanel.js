@@ -49,7 +49,7 @@ class UserInfoPanel extends Component {
               </Col>
               <Col md={6}>
               <p>
-               {"     " + this.props.cardData.person.name}
+               {this.props.cardData.person.name}
               </p>
               <p>
               {this.props.cardData.person.phone}

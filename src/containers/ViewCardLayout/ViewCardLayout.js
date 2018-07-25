@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-
 import { Col, Row, Panel } from "react-bootstrap";
+
 import InfoPanel from "../../components/InfoPanel/InfoPanel";
 import UserInfoPanel from "../../components/UserInfoPanel/UserInfoPanel";
 import MapPanel from "../../components/MapPanel/MapPanel"
+
+import "../../styles/bootstrap3/css/bootstrap.css";
 
 class ViewCardLayout extends Component {
   state = {
@@ -38,8 +40,8 @@ class ViewCardLayout extends Component {
               <Panel.Heading>Просмотр объявления</Panel.Heading>
               <Panel.Body>
                 <InfoPanel cardData={this.state.cardData} colmd={8} />
-                <MapPanel colmd={4} />
                 <UserInfoPanel cardData={this.state.cardData} colmd={4} />
+                <MapPanel colmd={4} />
               </Panel.Body>
             </Panel>
           </Col>

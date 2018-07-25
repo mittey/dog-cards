@@ -1,6 +1,12 @@
 import React from "react";
 
-import { FormControl, FormGroup, ControlLabel, Col } from "react-bootstrap";
+import {
+  FormControl,
+  FormGroup,
+  ControlLabel,
+  Col,
+  HelpBlock
+} from "react-bootstrap";
 
 const select = props => {
   let options = null;
@@ -20,7 +26,10 @@ const select = props => {
 
   return (
     <Col md={props.colmd}>
-      <FormGroup controlId={props.id}>
+      <FormGroup
+        controlId={props.id}
+        validationState={props.validationOptions.isValid ? null : "error"}
+      >
         <ControlLabel>{props.label}</ControlLabel>
         <FormControl
           onChange={props.changed}
@@ -36,6 +45,9 @@ const select = props => {
 
           {options}
         </FormControl>
+        {props.validationOptions.isValid ? null : (
+          <HelpBlock>{props.validationOptions.errorMessage}</HelpBlock>
+        )}
       </FormGroup>
     </Col>
   );

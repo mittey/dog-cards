@@ -35,7 +35,7 @@ class ImageUploader extends Component {
             style={{
               position: "relative",
               width: "100%",
-              height: "200px",
+              height: "300px",
               borderWidth: "2px",
               borderColor: "rgb(102, 102, 102)",
               borderStyle: "dashed",
@@ -46,7 +46,7 @@ class ImageUploader extends Component {
             <p>
               {this.state.fileName
                 ? this.state.fileName
-                : "Для загрузки перетащите фото на область или кликните левой кнопкой мыши и выберите фото "}
+                : "   Для загрузки перетащите фото на область или кликните левой кнопкой мыши и выберите фото "}
             </p>
           </Dropzone>
         </div>
