@@ -2,19 +2,17 @@ import React, { PureComponent } from "react";
 import { Panel, Col } from "react-bootstrap";
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
-class Map extends PureComponent {
-  dragHandler = event => {
-    console.log(event.latLng.lat(), event.latLng.lng());
-  };
+class CreateMapPanel extends PureComponent {
+
 
   render() {
-    const pos = { lat: 59.939095, lng: 30.315868 };
+    
 
     const GoogleMapExample = withGoogleMap(props => (
-      <GoogleMap defaultCenter={pos} defaultZoom={13}>
+      <GoogleMap defaultCenter={this.props.coordinates} defaultZoom={13}>
         <Marker
-          onDragEnd={this.dragHandler}
-          position={pos}
+          onDragEnd={this.props.dragEnd}
+          position={this.props.coordinates}
           draggable={true}
           onClick={(event, marker) => {
             console.log("marker was clicked", event);
@@ -27,11 +25,11 @@ class Map extends PureComponent {
       <div>
         <Col md={this.props.colmd}>
           <Panel>
-            <Panel.Heading>Укажите место на карте</Panel.Heading>
+            {/* <Panel.Heading>Укажите место на карте</Panel.Heading> */}
             <Panel.Body>
               <GoogleMapExample
                 // colmd={4}
-                containerElement={<div style={{ height: `300px` }} />}
+                containerElement={<div style={{ height: `276px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
               />
             </Panel.Body>
@@ -42,4 +40,4 @@ class Map extends PureComponent {
   }
 }
 
-export default Map;
+export default CreateMapPanel;

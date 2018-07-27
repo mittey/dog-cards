@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Row, Col, Panel } from "react-bootstrap";
 
+
 import InputPanel from "../../components/InputPanel/InputPanel";
-import MapPanel from "../../components/MapPanel/MapPanel";
+import CreateMapPanel from "../../components/CreateMapPanel/CreateMapPanel";
+import BackButton from "../../components/ui/BackButton/BackButton";
 import SubmitButton from "../../components/ui/SubmitButton/SubmitButton";
 import ImageUploadPanel from "../../components/ImageUploadPanel/ImageUploadPanel";
 
 import "../../styles/bootstrap3/css/bootstrap.css";
+
 
 class Layout extends Component {
   state = {
@@ -21,34 +24,34 @@ class Layout extends Component {
     validationOptions: {
       ageValidation: {
         isValid: true,
-        errorMessage: "Please enter the age."
+        errorMessage: "Укажите возраст животного (полных лет)"
       },
       colorValidation: {
         isValid: true,
-        errorMessage: "Please enter the color."
+        errorMessage: "Укажите окраску животного"
       },
       aliasValidation: {
         isValid: true,
-        errorMessage: "Please enter the name."
+        errorMessage: "Укажите кличку животного"
       },
       descriptionValidation: {
         isValid: true,
-        errorMessage: "Please enter the description."
+        errorMessage: "Введите текст объявления"
       },
       breedValidation: {
         isValid: true,
-        errorMessage: "Please select the breed."
+        errorMessage: "Выберите породу животного"
       },
       genderValidation: {
         isValid: true,
-        errorMessage: "Please select the gender."
+        errorMessage: "Укажите пол животного"
       },
       speciesValidation: {
         isValid: true,
-        errorMessage: "Please select the species."
+        errorMessage: "Выберите вид животного"
       }
     },
-    // personData: null,
+   
     formData: {
       description: "",
       animal: {
@@ -73,8 +76,9 @@ class Layout extends Component {
 
   validate = () => {
     let isValid = true;
+    const re = /^[0-9\b]+$/;
 
-    if (!this.state.formData.animal.age) {
+    if ((!this.state.formData.animal.age)||(!re.test(this.state.formData.animal.age))) {
       const validationOptions = { ...this.state.validationOptions };
 
       validationOptions.ageValidation.isValid = false;
@@ -232,6 +236,22 @@ class Layout extends Component {
     this.setState({ formData: formData });
   };
 
+  dragHandler = event => {
+    const formData = { ...this.state.formData };
+
+    const address = {...this.state.formData.address}
+
+    address.latitude = event.latLng.lat();
+
+    address.longitude = event.latLng.lng();
+
+    formData.address = address;
+
+    this.setState({ formData: formData });
+
+    console.log(event.latLng.lat(), event.latLng.lng());
+  };
+
   pictureUploadHandler = pictureId => {
     const formData = { ...this.state.formData };
 
@@ -240,13 +260,7 @@ class Layout extends Component {
     this.setState({ formData: formData });
   };
 
-  // onMarkerPositionChanged = event => {
-  //   const formData = { ...this.state.formData };
-
-  //   formData.address[event.target.name] = event.target.value;
-
-  //   this.setState({ formData: formData });
-  // };
+  
 
   _fetchBreedData = () => {
     fetch("http://localhost:8090/breeds")
@@ -283,20 +297,8 @@ class Layout extends Component {
     this._fetchBreedData();
     this._fetchSpeciesData();
 
-    // fetch(`http://localhost:8090/people/1`)
-    // .then(result => result.json())
-    // .then(data => {
-    //     console.log(data);
-    //     this.setState({ personData: data });
-    // });
   };
 
-  // getValidationState = () => {
-  //   const length = this.state.alias.length;
-  //   if (length > 2) return 'success';
-  //   else if (length <= 0) return 'error';
-  //   return null;
-  // }
 
   render() {
     return (
@@ -314,7 +316,6 @@ class Layout extends Component {
                     descriptionChanged={this.descriptionChangeHandler}
                     speciesChanged={this.speciesSelectedHandler}
                     breedChanged={this.breedChangeHandler}
-                    // markerDragend={this.markerDragendHanlder}
                     options={{
                       speciesOptions: this.state.speciesOptions,
                       breedOptions: this.state.breedOptions,
@@ -324,13 +325,16 @@ class Layout extends Component {
                     breedSelectDisabled={this.state.breedSelectDisabled}
                     validationOptions={this.state.validationOptions}
                   />
-                  <MapPanel
+                  <CreateMapPanel
                     colmd={6}
+                    dragEnd={this.dragHandler}
                   />
                   <ImageUploadPanel
                     pictureUploded={this.pictureUploadHandler}
                     colmd={6}
                   />
+
+                  <BackButton />
                   <SubmitButton />
                 </Panel.Body>
               </Panel>

@@ -3,35 +3,50 @@ import { Col, Row, Panel } from "react-bootstrap";
 
 import InfoPanel from "../../components/InfoPanel/InfoPanel";
 import UserInfoPanel from "../../components/UserInfoPanel/UserInfoPanel";
-import MapPanel from "../../components/MapPanel/MapPanel"
+import ViewMapPanel from "../../components/ViewMapPanel/ViewMapPanel";
+import BackButton from "../../components/ui/BackButton/BackButton";
 
 import "../../styles/bootstrap3/css/bootstrap.css";
 
 class ViewCardLayout extends Component {
   state = {
-    cardData: null,
+    cardData: null
     // peopleData: null
   };
 
-    componentDidMount = () => {
-        console.log(this.props);
+  componentDidMount = () => {
+    console.log(this.props);
 
-        fetch(`http://localhost:8090/cards/${this.props.match.params.cardId}`)
-            .then(result => result.json())
-            .then(data => {
-                console.log(data);
-                this.setState({ cardData: data });
-            });
+    fetch(`http://localhost:8090/cards/${this.props.match.params.cardId}`)
+      .then(result => result.json())
+      .then(data => {
+        console.log(data);
+        this.setState({ cardData: data });
+      });
 
-            // fetch(`http://localhost:8090/people/1`)
-            //   .then(result => result.json())
-            //   .then(data => {
-            //     console.log(data);
-            //     this.setState({ peopleData: data });
-            //   });
-    };
+    // fetch(`http://localhost:8090/people/1`)
+    //   .then(result => result.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     this.setState({ peopleData: data });
+    //   });
+  };
 
   render() {
+    let mapPanel = <p>Loading...</p>;
+
+    if (this.state.cardData && this.state.cardData.address) {
+      mapPanel = (
+        <ViewMapPanel
+          colmd={4}
+          coordinates={{
+            lat: this.state.cardData.address.latitude,
+            lng: this.state.cardData.address.longitude
+          }}
+        />
+      );
+    }
+
     return (
       <div>
         <Row style={{ marginTop: "10px" }}>
@@ -41,7 +56,8 @@ class ViewCardLayout extends Component {
               <Panel.Body>
                 <InfoPanel cardData={this.state.cardData} colmd={8} />
                 <UserInfoPanel cardData={this.state.cardData} colmd={4} />
-                <MapPanel colmd={4} />
+                {mapPanel}
+                <BackButton/>
               </Panel.Body>
             </Panel>
           </Col>
