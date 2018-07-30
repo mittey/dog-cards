@@ -59,7 +59,7 @@ class HomePage extends Component {
           />
         </div>
         <div className="panel panel-default ">
-          <div  style={{fontSize:"15pt"}} className="panel-heading">Потеряшки:</div>
+          <div  style={{fontSize:"13pt"}} className="panel-heading">Приглядитесь... Возможно, вы их видели?</div>
           <div className="panel-body">{cards}</div>
         </div>
       </div>

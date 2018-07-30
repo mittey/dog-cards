@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { Panel, Col } from "react-bootstrap";
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
-class CreateMapPanel extends PureComponent {
+class ViewMapPanel extends PureComponent {
 
 
   render() {
@@ -14,9 +14,6 @@ class CreateMapPanel extends PureComponent {
           onDragEnd={this.props.dragEnd}
           position={this.props.coordinates}
           draggable={true}
-          onClick={(event, marker) => {
-            console.log("marker was clicked", event);
-          }}
         />
       </GoogleMap>
     ));
@@ -29,7 +26,7 @@ class CreateMapPanel extends PureComponent {
             <Panel.Body>
               <GoogleMapExample
                 // colmd={4}
-                containerElement={<div style={{ height: `276px` }} />}
+                containerElement={<div style={{ height: `278px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
               />
             </Panel.Body>
@@ -40,4 +37,4 @@ class CreateMapPanel extends PureComponent {
   }
 }
 
-export default CreateMapPanel;
+export default ViewMapPanel;

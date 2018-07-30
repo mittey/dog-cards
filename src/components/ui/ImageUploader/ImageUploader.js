@@ -33,6 +33,7 @@ class ImageUploader extends Component {
           <Dropzone
             accept="image/jpeg, image/png"
             style={{
+              backgroundColor: "#F5F5F5",
               position: "relative",
               width: "100%",
               height: "300px",

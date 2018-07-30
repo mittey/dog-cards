@@ -302,13 +302,14 @@ class Layout extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{fontFamily:"Segoe UI"}}>
         <form onSubmit={this.formSubmitHandler}>
           <Row style={{ marginTop: "50px" }}>
             <Col md={10} mdOffset={1}>
               <Panel>
-                <Panel.Heading>
-                  <b>Укажите информацию о пропавшем животном</b>
+                <Panel.Heading
+                style={{fontSize:"12pt"}}>
+                  Укажите информацию о пропавшем животном
                 </Panel.Heading>
                 <Panel.Body>
                   <InputPanel

@@ -48,7 +48,7 @@ class ViewCardLayout extends Component {
     }
 
     return (
-      <div>
+      <div style={{fontFamily:"Segoe UI"}}>
         <Row style={{ marginTop: "10px" }}>
           <Col md={10} mdOffset={1}>
             <Panel>
